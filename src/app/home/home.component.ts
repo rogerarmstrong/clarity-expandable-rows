@@ -10,5 +10,15 @@ import { Component } from "@angular/core";
     templateUrl: './home.component.html',
 })
 export class HomeComponent {
+    users: User[] = new Array<User>();
 
+    constructor() {
+        for (let i = 0; i < 20; i++) {
+            this.users.push(new User(i, `user${i}`));
+        }
+    }
+}
+
+export class User {
+    constructor(public id: number, public name: string) { }
 }

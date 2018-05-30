@@ -1,20 +1,20 @@
-<!--
-  ~ Copyright (c) 2016 VMware, Inc. All Rights Reserved.
-  ~ This software is released under MIT license.
-  ~ The full license information can be found in LICENSE in the root directory of this project.
-  -->
-<p>This is a Clarity seed application. This is the default page that loads for the application.</p>
+<clr-datagrid>
+    <clr-dg-column>User ID</clr-dg-column>
+    <clr-dg-column>Name</clr-dg-column>
 
-<clr-dropdown>
-    <button clrDropdownTrigger class="btn">
-        Dropdown
-        <clr-icon shape="caret down"></clr-icon>
-    </button>
-    <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-        <a clrDropdownItem href="javascript://">Action 1</a>
-        <a clrDropdownItem href="javascript://">Action 2</a>
-        <div class="dropdown-divider"></div>
-        <a clrDropdownItem href="javascript://">Link 1</a>
-        <a clrDropdownItem href="javascript://">Link 2</a>
-    </clr-dropdown-menu>
-</clr-dropdown>
+    <clr-dg-row *clrDgItems="let user of users">
+        <clr-dg-cell>{{user.id}}</clr-dg-cell>
+        <clr-dg-cell>{{user.name}}</clr-dg-cell>
+        <clr-dg-row-detail *clrIfExpanded>
+            User details
+        </clr-dg-row-detail>
+    </clr-dg-row>
+
+    <clr-dg-footer>
+        <clr-dg-pagination #pagination [clrDgPageSize]="5" [clrDgTotalItems]="users?.length">
+            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} users
+        </clr-dg-pagination>
+    </clr-dg-footer>
+
+
+</clr-datagrid>
